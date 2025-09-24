@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lilita+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Permanent+Marker&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #E554C7;
+  --color-foreground: #2D1B3D;
+
+  --color-card: #F5F1E8;
+  --color-card-foreground: #2D1B3D;
+
+  --color-popover: #F5F1E8;
+  --color-popover-foreground: #2D1B3D;
+
+  --color-primary: #E554C7;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #4A2B5C;
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-muted: #F5F1E8;
+  --color-muted-foreground: #2D1B3D;
+
+  --color-accent: #8DA5E5;
+  --color-accent-foreground: #2D1B3D;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #000000;
+  --color-input: #F5F1E8;
+  --color-ring: #000000;
+
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Custom Colors */
+  --color-magenta: #E554C7;
+  --color-purple: #4A2B5C;
+  --color-blue: #8DA5E5;
+  --color-cream: #F5F1E8;
+  --color-dark-purple-text: #2D1B3D;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+
+  /* Custom Fonts */
+  --font-brand: "Lilita One", sans-serif;
+  --font-hero-tagline: "Caveat", cursive;
+  --font-section-header: "Permanent Marker", cursive;
+  --font-menu-item: "Caveat", cursive;
+  --font-body: "Montserrat", sans-serif;
+  --font-price: "Montserrat", sans-serif;
+  --font-button: "Montserrat", sans-serif;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: #000000;
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-magenta);
+    --foreground: var(--color-dark-purple-text);
+    --card: var(--color-cream);
+    --card-foreground: var(--color-dark-purple-text);
+    --popover: var(--color-cream);
+    --popover-foreground: var(--color-dark-purple-text);
+    --primary: var(--color-magenta);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-purple);
+    --secondary-foreground: var(--color-white);
+    --muted: var(--color-cream);
+    --muted-foreground: var(--color-dark-purple-text);
+    --accent: var(--color-blue);
+    --accent-foreground: var(--color-dark-purple-text);
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+    --border: var(--color-black);
+    --input: var(--color-cream);
+    --ring: var(--color-black);
+    --chart-1: #e67e22;
+    --chart-2: #2d8659;
+    --chart-3: #1e3a5f;
+    --chart-4: #f1c40f;
+    --chart-5: #e74c3c;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-section-header);
+    color: var(--color-dark-purple-text);
+  }
+
+  .font-brand {
+    font-family: var(--font-brand);
+    font-size: 72px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+  }
+
+  .font-hero-tagline {
+    font-family: var(--font-hero-tagline);
+    font-size: 48px;
+    font-style: italic;
+  }
+
+  .font-section-header {
+    font-family: var(--font-section-header);
+    font-size: 120px;
+  }
+
+  .font-menu-item {
+    font-family: var(--font-menu-item);
+    font-size: 36px;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .font-price {
+    font-family: var(--font-price);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .font-button {
+    font-family: var(--font-button);
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: 1440px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
