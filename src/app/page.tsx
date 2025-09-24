@@ -10,8 +10,6 @@ import AboutSection from "@/components/sections/about";
 import CtaBanner from "@/components/sections/cta-banner";
 import ContactIntro from "@/components/sections/contact-intro";
 import Footer from "@/components/sections/footer";
-import CursorFX from "@/components/cursor-fx";
-import ScrollReveal from "@/components/scroll-reveal";
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -38,25 +36,14 @@ export default function HomePage() {
 
       <main>
         <Hero />
-        <ScrollReveal>
-          <MenuIntro />
-        </ScrollReveal>
-        <ScrollReveal delay={0.05}>
-          <MenuSection />
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <AboutSection />
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <CtaBanner />
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <ContactIntro />
-        </ScrollReveal>
+        <MenuIntro />
+        <MenuSection />
+        <AboutSection />
+        <CtaBanner />
+        <ContactIntro />
       </main>
 
       <Footer />
-      <CursorFX />
     </div>
   );
 }
