@@ -25,13 +25,7 @@ const Hero: FC = () => {
       }}
     >
       {/* Big intro title that shrinks/fades on scroll */}
-      <motion.h2
-        style={{ scale: titleScale, opacity: titleOpacity, y: titleY }}
-        className="pointer-events-none font-brand text-[10vw] leading-none tracking-[0.2em] text-dark-purple-text drop-shadow-[0_4px_0_#00000020] absolute top-28 left-1/2 -translate-x-1/2 z-30 select-none md:top-36"
-        aria-hidden="true"
-      >
-        MISTER PIO
-      </motion.h2>
+     
 
       <div className="max-w-[1440px] mx-auto">
         <div className="relative pt-[30px] md:pt-0">
