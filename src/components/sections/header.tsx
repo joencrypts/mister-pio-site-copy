@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const NavButton = ({
   href,
@@ -23,6 +24,11 @@ const NavButton = ({
 
 const Header = ({ onMenuToggle }: { onMenuToggle?: () => void }) => {
   const [shrunk, setShrunk] = useState(false);
+  // Scroll-driven intro logo that scales down and moves into the header
+  const { scrollYProgress } = useScroll();
+  const introScale = useTransform(scrollYProgress, [0, 0.12], [2.4, 1]);
+  const introY = useTransform(scrollYProgress, [0, 0.12], [0, -220]);
+  const introOpacity = useTransform(scrollYProgress, [0.08, 0.16], [1, 0]);
 
   useEffect(() => {
     const onScroll = () => setShrunk(window.scrollY > 60);
@@ -33,6 +39,14 @@ const Header = ({ onMenuToggle }: { onMenuToggle?: () => void }) => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 bg-magenta bg-[url('https://www.misterpio.com/images/texture_pink.webp')] bg-repeat transition-all duration-300 ${shrunk ? "shadow-[0_6px_0_#000]" : "shadow-none"}`}>
+      {/* Full-screen intro logo that docks into the header on scroll */}
+      <motion.img
+        src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/svgs/mister_pio-2.svg?"
+        alt="Mister Pio"
+        style={{ scale: introScale, y: introY, opacity: introOpacity }}
+        className="pointer-events-none fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 w-[72vw] max-w-[1000px] select-none"
+        aria-hidden="true"
+      />
       <div className={`container mx-auto flex flex-col items-center gap-4 px-4 ${shrunk ? "pt-3 pb-2" : "pt-6 pb-4"} lg:flex-row lg:items-center lg:justify-between lg:gap-0 lg:py-4`}>
         
         {/* Desktop Layout */}
