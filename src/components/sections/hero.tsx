@@ -1,7 +1,20 @@
+"use client";
+
 import Image from 'next/image';
 import type { FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Hero: FC = () => {
+  const { scrollYProgress } = useScroll();
+  const titleScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.6]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const titleY = useTransform(scrollYProgress, [0, 0.2], [0, -60]);
+
+  // Parallax for floating bits
+  const yStamp = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const yCap = useTransform(scrollYProgress, [0, 1], [0, 160]);
+  const yPeppers = useTransform(scrollYProgress, [0, 1], [0, -140]);
+
   return (
     <section
       className="relative w-full bg-magenta pt-40 px-4 md:pt-80 lg:pt-[400px] lg:px-6 lg:pb-[250px] lg:overflow-hidden 2xl:pt-[460px] bg-no-repeat bg-cover"
@@ -11,18 +24,30 @@ const Hero: FC = () => {
         backgroundSize: 'auto',
       }}
     >
+      {/* Big intro title that shrinks/fades on scroll */}
+      <motion.h2
+        style={{ scale: titleScale, opacity: titleOpacity, y: titleY }}
+        className="pointer-events-none font-brand text-[10vw] leading-none tracking-[0.2em] text-dark-purple-text drop-shadow-[0_4px_0_#00000020] absolute top-28 left-1/2 -translate-x-1/2 z-30 select-none md:top-36"
+        aria-hidden="true"
+      >
+        MISTER PIO
+      </motion.h2>
+
       <div className="max-w-[1440px] mx-auto">
         <div className="relative pt-[30px] md:pt-0">
           <h1 className="font-hero-tagline text-center text-dark-purple-text sm:max-w-3/4 sm:mx-auto">
             <span className="sr-only">Mister Pio </span>Peruvian Rotisserie Chicken
           </h1>
-          <Image
-            alt="Peruvian stamp"
-            width={110}
-            height={142}
-            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/images/next-950452-stampperu2.webp?"
-            className="absolute top-[140px] right-[8%] rotate-12 max-w-[66px] z-10 sm:top-[108px] md:max-w-[80px] md:-top-[120px] lg:max-w-[110px]"
-          />
+          {/* Stamp with parallax */}
+          <motion.div style={{ y: yStamp }} className="absolute top-[140px] right-[8%] rotate-12 max-w-[66px] z-10 sm:top-[108px] md:max-w-[80px] md:-top-[120px] lg:max-w-[110px]">
+            <Image
+              alt="Peruvian stamp"
+              width={110}
+              height={142}
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/images/next-950452-stampperu2.webp?"
+              className="w-full"
+            />
+          </motion.div>
         </div>
 
         <div className="relative mt-[80px]">
@@ -45,20 +70,26 @@ const Hero: FC = () => {
                 />
               </div>
             </div>
-            <Image
-              alt="Inka Cola"
-              width={133}
-              height={134}
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/images/next-650413-incakolacap.webp?"
-              className="absolute -top-[20%] left-[3%] w-1/4 max-w-[125px] -rotate-20 z-20 md:w-1/5 md:-top-[15%] md:left-[6%]"
-            />
-            <Image
-              alt="Peppers"
-              width={329}
-              height={451}
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/svgs/next-350410-aji_dried_peppers.webp?"
-              className="absolute top-3/4 left-[5%] -rotate-3 max-w-[40%] z-10 md:max-w-[200px] md:top-1/2 lg:max-w-sm lg:left-[8.333333%] xl:left-[16.666667%]"
-            />
+            {/* Inka cola cap with parallax */}
+            <motion.div style={{ y: yCap }} className="absolute -top-[20%] left-[3%] w-1/4 max-w-[125px] -rotate-20 z-20 md:w-1/5 md:-top-[15%] md:left-[6%]">
+              <Image
+                alt="Inka Cola"
+                width={133}
+                height={134}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/images/next-650413-incakolacap.webp?"
+                className="w-full"
+              />
+            </motion.div>
+            {/* Peppers with parallax */}
+            <motion.div style={{ y: yPeppers }} className="absolute top-3/4 left-[5%] -rotate-3 max-w-[40%] z-10 md:max-w-[200px] md:top-1/2 lg:max-w-sm lg:left-[8.333333%] xl:left-[16.666667%]">
+              <Image
+                alt="Peppers"
+                width={329}
+                height={451}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/e218bb76-042f-4203-a655-c9d7df87e103-misterpio-com/assets/svgs/next-350410-aji_dried_peppers.webp?"
+                className="w-full"
+              />
+            </motion.div>
           </div>
         </div>
 
