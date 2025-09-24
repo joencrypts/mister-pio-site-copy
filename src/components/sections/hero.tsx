@@ -35,10 +35,7 @@ const Hero: FC = () => {
 
       <div className="max-w-[1440px] mx-auto">
         <div className="relative pt-[30px] md:pt-0">
-          <h1 className="font-hero-tagline text-center text-dark-purple-text sm:max-w-3/4 sm:mx-auto">
-            <span className="sr-only">Mister Pio </span>Peruvian Rotisserie Chicken
-          </h1>
-          {/* Stamp with parallax */}
+                    {/* Stamp with parallax */}
           <motion.div
             style={{ y: yStamp }}
             animate={{ rotate: [0, 3, -2, 0], scale: [1, 1.03, 0.98, 1] }}
