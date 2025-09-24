@@ -25,7 +25,18 @@ const Hero: FC = () => {
       }}
     >
       {/* Big intro title that shrinks/fades on scroll */}
-     
+      <motion.h1
+        style={{ scale: titleScale, opacity: titleOpacity, y: titleY }}
+        className="pointer-events-none select-none font-brand tracking-[0.08em] leading-none text-foreground/90 text-center mx-auto text-[22vw] sm:text-[18vw] md:text-[16vw] lg:text-[14vw] absolute top-6 left-1/2 -translate-x-1/2 z-[1] drop-shadow-[0_6px_0_rgba(0,0,0,0.08)]"
+      >
+        MISTER PIO
+      </motion.h1>
+      <motion.p
+        style={{ opacity: titleOpacity }}
+        className="pointer-events-none font-hero-tagline absolute left-1/2 -translate-x-1/2 top-[40vh] md:top-[36vh] text-foreground/80 text-2xl md:text-4xl z-[1]"
+      >
+        Peruvian Rotisserie Chicken
+      </motion.p>
 
       <div className="max-w-[1440px] mx-auto">
         <div className="relative pt-[30px] md:pt-0">
